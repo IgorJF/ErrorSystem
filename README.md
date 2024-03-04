@@ -17,6 +17,7 @@ Após isso, apenas é necessário clicar no botão "Cadastrar" e as informaçõe
 ### Exibição
 ![exibicaodeinformacoes](https://github.com/IgorJF/ErrorSystem/assets/111748228/4061e71c-7eb5-4bbb-85da-7731a1d347f7)
 Ao clicar no botão voltar na Tela de Cadastro, será redirecionado para a tela inicial novamente, onde agora no elemento JList, terá o nome de todos os erros que foram cadastrados e que estão no banco de dados. Note que não é possível editar as informações, visto que as caixas de texto estão bloqueadas.
+
 ---
 ### Edição
 ![editarinformacoes](https://github.com/IgorJF/ErrorSystem/assets/111748228/119828e6-99ca-4ca8-8ca3-a1125886db56)
