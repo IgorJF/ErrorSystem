@@ -41,9 +41,9 @@ Por fim, ao realizar todas as operações, o software estará disponível para n
 ![telainicial](https://github.com/IgorJF/ErrorSystem/assets/111748228/eb7136a8-cdbe-40e8-84be-47437810bb25)
 
 ---
-Igor Jorge Ferraz.
-Feito para fins de estudo.
-Referências:
+###### Igor Jorge Ferraz.
+###### Feito para fins de estudo.
+###### Referências:
 - https://docs.oracle.com/javase%2F7%2Fdocs%2Fapi%2F%2F/javax/swing/package-summary.html
 - https://www.javatpoint.com/java-swing
 - https://docs.oracle.com/en/java/
