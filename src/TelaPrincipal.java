@@ -58,10 +58,10 @@ public class TelaPrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
+	////Listas
 		listaErros.setForeground(new Color(255, 255, 255));
 		listaErros.setBackground(new Color(51, 51, 51));
-		
-		
 		listaErros.setBounds(22, 27, 315, 490);
 		contentPane.add(listaErros);
 		listaErros.addListSelectionListener(new ListSelectionListener() {
@@ -69,12 +69,13 @@ public class TelaPrincipal extends JFrame {
 		    	exibirErros(e);
 		    }
 		});
-		
+
+	/////Botões para cadastrar, editar e deletar
 		modeloErros = new DefaultListModel<>();
         listaErros.setModel(modeloErros);
         
         carregarErros();
-		
+	
 		JButton btnCadastro = new JButton("Cadastrar");
 		btnCadastro.setForeground(Color.WHITE);
 		btnCadastro.setBackground(new Color(0, 0, 0));
@@ -126,6 +127,7 @@ public class TelaPrincipal extends JFrame {
 		btnDeletar.setBounds(244, 532, 110, 21);
 		contentPane.add(btnDeletar);
 		
+	/////////////////	
 		txtNome = new JTextField();
 		txtNome.setText("Nome");
 		txtNome.setForeground(Color.WHITE);
@@ -167,6 +169,7 @@ public class TelaPrincipal extends JFrame {
 		txtPlataforma.setCaretColor(Color.WHITE);
 		txtDescricao.setCaretColor(Color.WHITE);
 		txtResolucao.setCaretColor(Color.WHITE);
+	//////////////////
 	}
 	
 	private void carregarErros() {

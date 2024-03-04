@@ -93,7 +93,7 @@ public class TelaCadastro extends JFrame {
 		lblPlataforma.setBounds(460, 55, 115, 19);
 		contentPane.add(lblPlataforma);
 	//////////////////
-		
+	//Botões	
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.setForeground(Color.WHITE);
 		btnCadastrar.setBackground(new Color(0, 0, 0));
@@ -120,6 +120,11 @@ public class TelaCadastro extends JFrame {
 		btnVoltar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnVoltar.setBounds(38, 519, 133, 37);
 		contentPane.add(btnVoltar);
+		
+		txtErro.setCaretColor(Color.WHITE);
+		txtPlataforma.setCaretColor(Color.WHITE);
+		txtDescricao.setCaretColor(Color.WHITE);
+		txtResolucao.setCaretColor(Color.WHITE);
 	}
 
 	//Método para cadastrar erros
