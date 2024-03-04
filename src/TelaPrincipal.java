@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.text.Caret;
+import javax.swing.text.DefaultCaret;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.JTextArea;
 import java.awt.Color;
 import java.awt.Font;
@@ -143,22 +146,27 @@ public class TelaPrincipal extends JFrame {
 		txtPlataforma.setColumns(10);
 		txtPlataforma.setBounds(403, 83, 422, 38);
 		contentPane.add(txtPlataforma);
+		
 		txtDescricao.setText("Descrição");
 		txtDescricao.setForeground(Color.WHITE);
-		
 		txtDescricao.setBackground(new Color(51, 51, 51));
 		txtDescricao.setEnabled(false);
 		txtDescricao.setEditable(false);
 		txtDescricao.setBounds(403, 141, 422, 187);
 		contentPane.add(txtDescricao);
+		
 		txtResolucao.setText("Resolução");
 		txtResolucao.setForeground(Color.WHITE);
 		txtResolucao.setBackground(new Color(51, 51, 51));
-		
 		txtResolucao.setEnabled(false);
 		txtResolucao.setEditable(false);
 		txtResolucao.setBounds(403, 338, 422, 187);
 		contentPane.add(txtResolucao);
+		
+		txtNome.setCaretColor(Color.WHITE);
+		txtPlataforma.setCaretColor(Color.WHITE);
+		txtDescricao.setCaretColor(Color.WHITE);
+		txtResolucao.setCaretColor(Color.WHITE);
 	}
 	
 	private void carregarErros() {
@@ -270,7 +278,7 @@ public class TelaPrincipal extends JFrame {
 	        PreparedStatement estamento = conexao.prepareStatement(SQL);
 	        
 	        //localização para a query SQL
-	        estamento.setString(1, txtNome.getText());
+	        estamento.setString(1, txtNome.getText()); // Não é possível atualizar o nome do erro
 	        estamento.setString(2, txtDescricao.getText());
 	        estamento.setString(3, txtPlataforma.getText());
 	        estamento.setString(4, txtResolucao.getText());
