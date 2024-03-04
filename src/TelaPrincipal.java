@@ -84,7 +84,7 @@ public class TelaPrincipal extends JFrame {
 		JButton btnDeletar = new JButton("Deletar");
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//deletarErros();
+				deletarErros();
 			}
 		});
 		btnDeletar.setBounds(244, 532, 110, 21);
@@ -139,60 +139,72 @@ public class TelaPrincipal extends JFrame {
     }
 	
 	private void exibirErros(ListSelectionEvent e){ //gambiarra 
-	    if (!e.getValueIsAdjusting()) { //Evento de selecao
-	        try {
-	            Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/errorsystem", "root", "root");
-	            String SQL = "SELECT Nome, Descricao, Plataforma, Resolucao FROM erros";
-	            PreparedStatement estamento = conexao.prepareStatement(SQL);
-	            ResultSet resultSet = estamento.executeQuery();
+		if (!e.getValueIsAdjusting()) { //Evento de selecao
+            // Obter o índice do item selecionado na lista
+            int index = listaErros.getSelectedIndex();
+            if (index != -1) { // Verificar se algum item está selecionado
+                try {
+                    Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/errorsystem", "root", "root");
+                    String nomeErro = modeloErros.getElementAt(index);
 
-	            if (resultSet.next()) {
-	                txtNome.setText(resultSet.getString("Nome"));
-	                txtDescricao.setText(resultSet.getString("Descricao"));
-	                txtPlataforma.setText(resultSet.getString("Plataforma"));
-	                txtResolucao.setText(resultSet.getString("Resolucao"));
-	            }
+                    String SQL = "SELECT * FROM erros WHERE Nome = ?";
+                    PreparedStatement estamento = conexao.prepareStatement(SQL);
+                    estamento.setString(1, nomeErro);
+                    ResultSet resultSet = estamento.executeQuery();
 
-	            resultSet.close();
-	            estamento.close();
-	            conexao.close();
-	        } catch (SQLException ex) {
-	            ex.printStackTrace();
-	            JOptionPane.showMessageDialog(null, "Erro ao carregar informações do banco de dados");
-	        }
-	    }
+                    if (resultSet.next()) {
+                        txtNome.setText(resultSet.getString("Nome"));
+                        txtDescricao.setText(resultSet.getString("Descricao"));
+                        txtPlataforma.setText(resultSet.getString("Plataforma"));
+                        txtResolucao.setText(resultSet.getString("Resolucao"));
+                    }
+
+                    resultSet.close();
+                    estamento.close();
+                    conexao.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro ao carregar informações do banco de dados");
+                }
+            }
+        }
 	}
 
-
-	/*private void deletarErros() {
+	private void deletarErros() {
+	    DefaultListModel<String> modeloErros = (DefaultListModel<String>) listaErros.getModel();
 	    try {
+	        Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/errorsystem", "root", "root");
+	        Statement estamento = conexao.createStatement();
+	        String SQL = "DELETE FROM erros WHERE Nome = ?";
+	        PreparedStatement pstmt = conexao.prepareStatement(SQL);
+
+	        // Obter o nome do erro selecionado na lista
 	        int index = listaErros.getSelectedIndex();
-	        if (index != -1) { 
+	        if (index != -1) { // Verificar se algum item está selecionado
 	            String nomeErroSelecionado = modeloErros.getElementAt(index);
 
-	            Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca", "root", "root");
-	            String SQL = "DELETE FROM erros WHERE Nome = ?";
-	            PreparedStatement statement = conexao.prepareStatement(SQL);
-	            statement.setString(1, nomeErroSelecionado);
-	            int linhasAfetadas = statement.executeUpdate();
+	            // Atribuir o nome do erro como valor do parâmetro na consulta preparada
+	            pstmt.setString(1, nomeErroSelecionado);
+
+	            // Executar a consulta preparada
+	            int linhasAfetadas = pstmt.executeUpdate();
 
 	            if (linhasAfetadas > 0) {
 	                JOptionPane.showMessageDialog(null, "Erro deletado com sucesso");
-	                modeloErros.removeElementAt(index);
+	                modeloErros.removeElementAt(index); // Remover o erro da lista
 	            } else {
-	                JOptionPane.showMessageDialog(null, "Falha ao deletar o erro");
+	                JOptionPane.showMessageDialog(null, "Erro ao deletar o erro");
 	            }
-
-	            statement.close();
-	            conexao.close();
 	        } else {
 	            JOptionPane.showMessageDialog(null, "Nenhum erro selecionado para deletar");
 	        }
+
+	        pstmt.close();
+	        conexao.close();
 	    } catch (SQLException ex) {
 	        ex.printStackTrace();
-	        JOptionPane.showMessageDialog(null, "Erro ao deletar do banco de dados");
+	        JOptionPane.showMessageDialog(null, "Erro de conexão com o banco de dados");
 	    }
-	}*/
-
+	}
 
 }
