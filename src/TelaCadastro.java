@@ -13,6 +13,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class TelaCadastro extends JFrame {
 
@@ -40,26 +41,35 @@ public class TelaCadastro extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(102, 102, 102));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 	//Caixas de texto que são inseridas as informações
 		txtErro = new JTextField();
+		txtErro.setForeground(Color.WHITE);
+		txtErro.setBackground(new Color(51, 51, 51));
 		txtErro.setBounds(38, 81, 383, 37);
 		contentPane.add(txtErro);
 		txtErro.setColumns(10);
 		
 		txtPlataforma = new JTextField();
+		txtPlataforma.setForeground(Color.WHITE);
+		txtPlataforma.setBackground(new Color(51, 51, 51));
 		txtPlataforma.setColumns(10);
 		txtPlataforma.setBounds(460, 81, 383, 37);
 		contentPane.add(txtPlataforma);
 		
 		txtDescricao = new JTextPane();
+		txtDescricao.setForeground(Color.WHITE);
+		txtDescricao.setBackground(new Color(51, 51, 51));
 		txtDescricao.setBounds(38, 190, 383, 237);
 		contentPane.add(txtDescricao);
 		
 		txtResolucao = new JTextPane();
+		txtResolucao.setForeground(Color.WHITE);
+		txtResolucao.setBackground(new Color(51, 51, 51));
 		txtResolucao.setBounds(460, 190, 383, 237);
 		contentPane.add(txtResolucao);
 	//////////////////
@@ -85,6 +95,8 @@ public class TelaCadastro extends JFrame {
 	//////////////////
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setForeground(Color.WHITE);
+		btnCadastrar.setBackground(new Color(0, 0, 0));
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cadastrarErros();
@@ -96,6 +108,8 @@ public class TelaCadastro extends JFrame {
 		contentPane.add(btnCadastrar);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setForeground(Color.WHITE);
+		btnVoltar.setBackground(new Color(0, 0, 0));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaPrincipal telaPrincipal = new TelaPrincipal();

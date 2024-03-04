@@ -17,6 +17,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.SystemColor;
 
 
 public class TelaPrincipal extends JFrame {
@@ -49,9 +51,12 @@ public class TelaPrincipal extends JFrame {
 		setResizable(false);
 		setBounds(100, 100, 1000, 600);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(102, 102, 102));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		listaErros.setForeground(new Color(255, 255, 255));
+		listaErros.setBackground(new Color(51, 51, 51));
 		
 		
 		listaErros.setBounds(22, 27, 315, 490);
@@ -68,6 +73,9 @@ public class TelaPrincipal extends JFrame {
         carregarErros();
 		
 		JButton btnCadastro = new JButton("Cadastrar");
+		btnCadastro.setForeground(Color.WHITE);
+		btnCadastro.setBackground(new Color(0, 0, 0));
+		btnCadastro.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnCadastro.setBounds(10, 532, 110, 21);
 		btnCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -77,12 +85,18 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		contentPane.add(btnCadastro);
+		btnConfirmar.setForeground(Color.WHITE);
+		btnConfirmar.setBackground(new Color(0, 0, 0));
+		btnConfirmar.setFont(new Font("Tahoma", Font.BOLD, 10));
 		
 		btnConfirmar.setBounds(562, 532, 110, 21);
 		contentPane.add(btnConfirmar);
 		btnConfirmar.setVisible(false);
 		
 		JButton btnEditar = new JButton("Editar");
+		btnEditar.setForeground(Color.WHITE);
+		btnEditar.setBackground(new Color(0, 0, 0));
+		btnEditar.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnConfirmar.setVisible(true);
@@ -98,6 +112,9 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(btnEditar);
 		
 		JButton btnDeletar = new JButton("Deletar");
+		btnDeletar.setForeground(Color.WHITE);
+		btnDeletar.setBackground(new Color(0, 0, 0));
+		btnDeletar.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				deletarErros();
@@ -107,6 +124,10 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(btnDeletar);
 		
 		txtNome = new JTextField();
+		txtNome.setText("Nome");
+		txtNome.setForeground(Color.WHITE);
+		txtNome.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		txtNome.setBackground(new Color(51, 51, 51));
 		txtNome.setEnabled(false);
 		txtNome.setEditable(false);
 		txtNome.setBounds(403, 25, 422, 38);
@@ -114,17 +135,25 @@ public class TelaPrincipal extends JFrame {
 		txtNome.setColumns(10);
 		
 		txtPlataforma = new JTextField();
+		txtPlataforma.setText("Plataforma");
+		txtPlataforma.setForeground(Color.WHITE);
+		txtPlataforma.setBackground(new Color(51, 51, 51));
 		txtPlataforma.setEnabled(false);
 		txtPlataforma.setEditable(false);
 		txtPlataforma.setColumns(10);
 		txtPlataforma.setBounds(403, 83, 422, 38);
 		contentPane.add(txtPlataforma);
+		txtDescricao.setText("Descrição");
+		txtDescricao.setForeground(Color.WHITE);
 		
-		txtDescricao.setBackground(new Color(255, 255, 255));
+		txtDescricao.setBackground(new Color(51, 51, 51));
 		txtDescricao.setEnabled(false);
 		txtDescricao.setEditable(false);
 		txtDescricao.setBounds(403, 141, 422, 187);
 		contentPane.add(txtDescricao);
+		txtResolucao.setText("Resolução");
+		txtResolucao.setForeground(Color.WHITE);
+		txtResolucao.setBackground(new Color(51, 51, 51));
 		
 		txtResolucao.setEnabled(false);
 		txtResolucao.setEditable(false);
@@ -201,14 +230,14 @@ public class TelaPrincipal extends JFrame {
 	            int linhasAfetadas = pstmt.executeUpdate();
 
 	            if (linhasAfetadas > 0) {
-	                JOptionPane.showMessageDialog(null, "Erro deletado com sucesso");
+	                JOptionPane.showMessageDialog(null, "Deletado com sucesso");
 	                modeloErros.removeElementAt(index);
 	                limparCampos();
 	            } else {
-	                JOptionPane.showMessageDialog(null, "Erro ao deletar o erro");
+	                JOptionPane.showMessageDialog(null, "Não foi possível deletar.");
 	            }
 	        } else {
-	            JOptionPane.showMessageDialog(null, "Nenhum erro selecionado para deletar");
+	            JOptionPane.showMessageDialog(null, "Selecione um item.");
 	        }
 	        pstmt.close();
 	        conexao.close();
@@ -226,8 +255,6 @@ public class TelaPrincipal extends JFrame {
 	}
 	
 	private void editarErros() {
-		txtNome.setEnabled(true);
-		txtNome.setEditable(true);
 		txtPlataforma.setEnabled(true);
 		txtPlataforma.setEditable(true);
 		txtDescricao.setEnabled(true);
@@ -251,9 +278,9 @@ public class TelaPrincipal extends JFrame {
 	        
 	        int linhasAfetadas = estamento.executeUpdate();
 	        if (linhasAfetadas > 0) {
-	            JOptionPane.showMessageDialog(null, "Erros atualizados com sucesso");
+	            JOptionPane.showMessageDialog(null, "Atualizado com sucesso.");
 	        } else {
-	            JOptionPane.showMessageDialog(null, "Nenhum erro foi atualizado");
+	            JOptionPane.showMessageDialog(null, "Selecione um item.");
 	        }
 
 	        estamento.close();
@@ -266,8 +293,6 @@ public class TelaPrincipal extends JFrame {
 	}
 	
 	private void bloquearErros() {
-		txtNome.setEnabled(false);
-		txtNome.setEditable(false);
 		txtPlataforma.setEnabled(false);
 		txtPlataforma.setEditable(false);
 		txtDescricao.setEnabled(false);
