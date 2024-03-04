@@ -1,5 +1,6 @@
 # Sistema de Gerenciamento de Erros
 Em diversas atividades diante das telas, diversos erros acontecem e são apresentados, trazendo muitas vezes a urgência de resolvê-los para seguir adiante na atividade que estava sendo executada. Muitas vezes, erros podem ser recorrentes ou acontecerem em outros dispositivos. E toda vez que isso ocorre, vem a urgência de ir atrás de todo o processo para a resolução do erro novamente. Para isso, um software capaz de armazenar e gerenciar erros foi desenvolvido por mim. Tem como objetivo armazenar as eventualidades que acontecem e todas as vezes que for preciso consultar, ter disponível um banco de informações em seu desktop. O sistema foi feito de forma simples por mim para fins de estudo com Java Swing na construção de todo sistema e MySQL para gerenciamento de banco de dados, nas plataformas Eclipse IDE e MySQL Workbench.
+###### Versão BETA
 
 ---
 ### Tela Inicial
