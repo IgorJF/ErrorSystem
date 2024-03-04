@@ -10,6 +10,8 @@ Esta é a tela inicial, onde é exibida a lista de ERROS e as funcionalidades qu
 ### Tela de Cadastro
 ![telacadastro](https://github.com/IgorJF/ErrorSystem/assets/111748228/4d988cdd-4942-4585-bb37-28a37bc5fb2f)
 A tela de cadastro pode ser acessada ao clicar no botão "Cadastrar" na tela inicial. Neste momento, será necessário informar todas as informações do erro: o Nome ou Código de Erro, a Plataforma ou Tecnologia onde o erro aconteceu, a Descrição detalhada de como aconteceu e a Solução do erro.
+
+---
 ![adicioandoinformacoes](https://github.com/IgorJF/ErrorSystem/assets/111748228/8db2605a-1f8b-4b2b-81fd-93887c998397)
 Após isso, apenas é necessário clicar no botão "Cadastrar" e as informações serão enviadas ao Banco de Dados.]
 
@@ -30,6 +32,8 @@ Ao selecionar o nome do erro e clicar no botão "Editar", as caixas de texto, ex
 ### Deletar
 ![deletar](https://github.com/IgorJF/ErrorSystem/assets/111748228/80e4bb6a-6fa1-486c-b81c-4f5c2bd6471d)
 Ainda se quiser, é possível deletar uma informação que foi guardada anteriormente. Ao selecionar o nome do erro e clicar no botão "Deletar", imediatamente, quaisquer registros daquela informação serão deletados da lista e do banco de dados.
+
+---
 ![deletado](https://github.com/IgorJF/ErrorSystem/assets/111748228/0bf70647-ab17-4e05-90a7-0187492a623b)
 
 ---
