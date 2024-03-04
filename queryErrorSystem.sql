@@ -7,4 +7,4 @@ CREATE TABLE ERROS (
     Descricao VARCHAR(255),
     Plataforma VARCHAR(255),
     Resolucao VARCHAR(255)
-    );
+);
