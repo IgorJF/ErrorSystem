@@ -29,6 +29,7 @@ public class TelaPrincipal extends JFrame {
 	JTextArea txtDescricao = new JTextArea();
 	JTextArea txtResolucao = new JTextArea();
 	JList listaErros = new JList();
+	private final JButton btnConfirmar = new JButton("Confirmar");
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -77,7 +78,22 @@ public class TelaPrincipal extends JFrame {
 		});
 		contentPane.add(btnCadastro);
 		
+		btnConfirmar.setBounds(562, 532, 110, 21);
+		contentPane.add(btnConfirmar);
+		btnConfirmar.setVisible(false);
+		
 		JButton btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnConfirmar.setVisible(true);
+				editarErros();
+				btnConfirmar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						confirmarErros();
+					}
+				});
+			}
+		});
 		btnEditar.setBounds(127, 532, 110, 21);
 		contentPane.add(btnEditar);
 		
@@ -103,14 +119,14 @@ public class TelaPrincipal extends JFrame {
 		txtPlataforma.setColumns(10);
 		txtPlataforma.setBounds(403, 83, 422, 38);
 		contentPane.add(txtPlataforma);
+		
 		txtDescricao.setBackground(new Color(255, 255, 255));
 		txtDescricao.setEnabled(false);
-		
 		txtDescricao.setEditable(false);
 		txtDescricao.setBounds(403, 141, 422, 187);
 		contentPane.add(txtDescricao);
-		txtResolucao.setEnabled(false);
 		
+		txtResolucao.setEnabled(false);
 		txtResolucao.setEditable(false);
 		txtResolucao.setBounds(403, 338, 422, 187);
 		contentPane.add(txtResolucao);
@@ -170,35 +186,30 @@ public class TelaPrincipal extends JFrame {
         }
 	}
 
-	private void deletarErros() {
+	private void deletarErros() { //gambiarra
 	    DefaultListModel<String> modeloErros = (DefaultListModel<String>) listaErros.getModel();
 	    try {
 	        Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/errorsystem", "root", "root");
-	        Statement estamento = conexao.createStatement();
 	        String SQL = "DELETE FROM erros WHERE Nome = ?";
 	        PreparedStatement pstmt = conexao.prepareStatement(SQL);
-
-	        // Obter o nome do erro selecionado na lista
 	        int index = listaErros.getSelectedIndex();
-	        if (index != -1) { // Verificar se algum item está selecionado
+	        
+	        if (index != -1) { 
 	            String nomeErroSelecionado = modeloErros.getElementAt(index);
-
 	            // Atribuir o nome do erro como valor do parâmetro na consulta preparada
 	            pstmt.setString(1, nomeErroSelecionado);
-
-	            // Executar a consulta preparada
 	            int linhasAfetadas = pstmt.executeUpdate();
 
 	            if (linhasAfetadas > 0) {
 	                JOptionPane.showMessageDialog(null, "Erro deletado com sucesso");
-	                modeloErros.removeElementAt(index); // Remover o erro da lista
+	                modeloErros.removeElementAt(index);
+	                limparCampos();
 	            } else {
 	                JOptionPane.showMessageDialog(null, "Erro ao deletar o erro");
 	            }
 	        } else {
 	            JOptionPane.showMessageDialog(null, "Nenhum erro selecionado para deletar");
 	        }
-
 	        pstmt.close();
 	        conexao.close();
 	    } catch (SQLException ex) {
@@ -207,4 +218,64 @@ public class TelaPrincipal extends JFrame {
 	    }
 	}
 
+	private void limparCampos() {
+		txtNome.setText("");
+		txtDescricao.setText("");
+		txtPlataforma.setText("");
+		txtResolucao.setText("");
+	}
+	
+	private void editarErros() {
+		txtNome.setEnabled(true);
+		txtNome.setEditable(true);
+		txtPlataforma.setEnabled(true);
+		txtPlataforma.setEditable(true);
+		txtDescricao.setEnabled(true);
+		txtDescricao.setEditable(true);
+		txtResolucao.setEnabled(true);
+		txtResolucao.setEditable(true);
+	}
+	
+	private void confirmarErros() {
+	    try {
+	        Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/errorsystem", "root", "root");
+	        String SQL = "UPDATE erros SET Nome = ?, Descricao = ?, Plataforma = ?, Resolucao = ? WHERE Nome = ?";
+	        PreparedStatement estamento = conexao.prepareStatement(SQL);
+	        
+	        //localização para a query SQL
+	        estamento.setString(1, txtNome.getText());
+	        estamento.setString(2, txtDescricao.getText());
+	        estamento.setString(3, txtPlataforma.getText());
+	        estamento.setString(4, txtResolucao.getText());
+	        estamento.setString(5, txtNome.getText()); // WHERE
+	        
+	        int linhasAfetadas = estamento.executeUpdate();
+	        if (linhasAfetadas > 0) {
+	            JOptionPane.showMessageDialog(null, "Erros atualizados com sucesso");
+	        } else {
+	            JOptionPane.showMessageDialog(null, "Nenhum erro foi atualizado");
+	        }
+
+	        estamento.close();
+	        conexao.close();
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	        JOptionPane.showMessageDialog(null, "Erro ao atualizar informações no banco de dados");
+	    }
+	    bloquearErros();  
+	}
+	
+	private void bloquearErros() {
+		txtNome.setEnabled(false);
+		txtNome.setEditable(false);
+		txtPlataforma.setEnabled(false);
+		txtPlataforma.setEditable(false);
+		txtDescricao.setEnabled(false);
+		txtDescricao.setEditable(false);
+		txtResolucao.setEnabled(false);
+		txtResolucao.setEditable(false);
+		btnConfirmar.setVisible(false);
+	}
+
 }
+
