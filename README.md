@@ -14,7 +14,7 @@ A tela de cadastro pode ser acessada ao clicar no botão "Cadastrar" na tela ini
 
 ---
 ![adicioandoinformacoes](https://github.com/IgorJF/ErrorSystem/assets/111748228/8db2605a-1f8b-4b2b-81fd-93887c998397)
-Após isso, apenas é necessário clicar no botão "Cadastrar" e as informações serão enviadas ao Banco de Dados.]
+Após isso, apenas é necessário clicar no botão "Cadastrar" e as informações serão enviadas ao Banco de Dados.
 
 ---
 ### Exibição
