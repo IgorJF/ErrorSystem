@@ -194,7 +194,7 @@ public class TelaPrincipal extends JFrame {
         }
     }
 	
-	private void exibirErros(ListSelectionEvent e){ //gambiarra 
+	private void exibirErros(ListSelectionEvent e){ 
 		if (!e.getValueIsAdjusting()) { //Evento de selecao
             // Obter o índice do item selecionado na lista
             int index = listaErros.getSelectedIndex();
@@ -226,7 +226,7 @@ public class TelaPrincipal extends JFrame {
         }
 	}
 
-	private void deletarErros() { //gambiarra
+	private void deletarErros() { 
 	    DefaultListModel<String> modeloErros = (DefaultListModel<String>) listaErros.getModel();
 	    try {
 	        Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/errorsystem", "root", "root");
